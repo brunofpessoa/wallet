@@ -1,3 +1,21 @@
-const loginAction = (value) => ({ type: 'LOGIN', value });
+import getFinancialData from '../../services/economyAPI';
 
-export default loginAction;
+export const LOGIN = 'LOGIN';
+export const REQUEST_FINANCIAL_DATA = 'REQUEST_FINANCIAL_DATA';
+
+export const loginAction = (value) => (
+  {
+    type: LOGIN, value,
+  });
+
+const walletAction = (data) => (
+  { type: REQUEST_FINANCIAL_DATA,
+    value: data,
+  });
+
+export function fetchFinancialData() {
+  return async (dispatch) => {
+    const response = await getFinancialData();
+    dispatch(walletAction(response));
+  };
+}

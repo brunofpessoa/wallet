@@ -4,7 +4,7 @@ import propTypes from 'prop-types';
 
 import Input from '../components/Input';
 import Button from '../components/Button';
-import loginAction from '../redux/actions';
+import { loginAction, fetchFinancialData } from '../redux/actions';
 
 class Login extends React.Component {
   constructor() {
@@ -37,8 +37,9 @@ class Login extends React.Component {
 
   login = () => {
     const { email } = this.state;
-    const { makeLogin, history } = this.props;
+    const { makeLogin, fetchData, history } = this.props;
     makeLogin(email);
+    fetchData();
     history.push('/carteira');
   }
 
@@ -75,10 +76,12 @@ class Login extends React.Component {
 
 const mapDispatchToProps = (dispatch) => ({
   makeLogin: (email) => dispatch(loginAction(email)),
+  fetchData: () => dispatch(fetchFinancialData()),
 });
 
 Login.propTypes = {
   makeLogin: propTypes.func.isRequired,
+  fetchData: propTypes.func.isRequired,
   history: propTypes.objectOf(Object).isRequired,
 };
 

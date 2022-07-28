@@ -1,3 +1,5 @@
+import { REQUEST_FINANCIAL_DATA } from '../actions';
+
 const initialState = {
   currencies: [], // array de string
   expenses: [], // array de objetos, com cada objeto tendo as chaves id, value, currency, method, tag, description e exchangeRates
@@ -7,9 +9,11 @@ const initialState = {
 
 function walletReducer(state = initialState, action) {
   switch (action.type) {
-  case 'AAAAAAAAAAAAAAAAAA':
+  case REQUEST_FINANCIAL_DATA:
     return {
       ...state,
+      currencies: Object.keys(action.value)
+        .filter((curr) => curr !== 'USDT'),
     };
   default:
     return state;
