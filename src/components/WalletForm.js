@@ -5,7 +5,7 @@ import propTypes from 'prop-types';
 import Input from './Input';
 import Select from './Select';
 import Button from './Button';
-import { expenseAction } from '../redux/actions';
+import { expenseAction, fetchCurrenciesData } from '../redux/actions';
 import getFinancialData from '../services/economyAPI';
 
 const methodOptions = ['Dinheiro', 'Cartão de crédito', 'Cartão de débito'];
@@ -20,9 +20,14 @@ class WalletForm extends Component {
       currency: 'USD',
       method: 'Dinheiro',
       tag: 'Alimentação',
-      describe: '',
+      description: '',
       exchangeRates: [],
     };
+  }
+
+  componentDidMount = () => {
+    const { fetchCurrencies } = this.props;
+    fetchCurrencies();
   }
 
   handleChange = ({ target }) => {
@@ -37,7 +42,7 @@ class WalletForm extends Component {
   }
 
   saveExpense = () => {
-    const { value, currency, method, tag, describe, exchangeRates } = this.state;
+    const { value, currency, method, tag, description, exchangeRates } = this.state;
     const { expenses, addExpense } = this.props;
     const data = {
       id: expenses.length,
@@ -45,7 +50,7 @@ class WalletForm extends Component {
       currency,
       method,
       tag,
-      describe,
+      description,
       exchangeRates,
     };
     addExpense(data);
@@ -65,7 +70,7 @@ class WalletForm extends Component {
             onChange={ this.handleChange }
           />
           <Input
-            name="describe"
+            name="description"
             label="Descrição"
             placeholder="Digite aqui."
             testId="description-input"
@@ -107,6 +112,7 @@ WalletForm.propTypes = {
   currencies: propTypes.arrayOf(propTypes.string).isRequired,
   expenses: propTypes.arrayOf(propTypes.object).isRequired,
   addExpense: propTypes.func.isRequired,
+  fetchCurrencies: propTypes.func.isRequired,
 };
 
 const mapStateToProps = (store) => ({
@@ -116,6 +122,7 @@ const mapStateToProps = (store) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   addExpense: (data) => dispatch(expenseAction(data)),
+  fetchCurrencies: () => dispatch(fetchCurrenciesData()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(WalletForm);
