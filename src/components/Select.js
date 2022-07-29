@@ -27,7 +27,7 @@ Select.propTypes = {
   name: propTypes.string.isRequired,
   testid: propTypes.string,
   label: propTypes.string,
-  options: propTypes.arrayOf(propTypes.object).isRequired,
+  options: propTypes.arrayOf(propTypes.string).isRequired,
   onChange: propTypes.func.isRequired,
 };
 
