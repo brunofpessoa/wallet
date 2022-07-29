@@ -24,19 +24,18 @@ class Table extends Component {
             {
               expenses.map((exp, index) => {
                 const { description, tag, method, value, currency, exchangeRates } = exp;
-                const { ask } = exchangeRates[currency];
+                const { ask, name } = exchangeRates[currency];
                 const convertedValue = (Number(value) * Number(ask)).toFixed(2);
-                const moedaDeConversao = 'Real Brasileiro';
                 return (
                   <tr key={ index }>
                     <td>{description}</td>
                     <td>{tag}</td>
                     <td>{method}</td>
-                    <td>{value}</td>
-                    <td>{currency}</td>
-                    <td>{ask}</td>
+                    <td>{Number(value).toFixed(2)}</td>
+                    <td>{name}</td>
+                    <td>{Number(ask).toFixed(2)}</td>
                     <td>{convertedValue}</td>
-                    <td>{moedaDeConversao}</td>
+                    <td>Real</td>
                     <td>
                       <Button name="edit" text="Editar" />
                       <Button name="delete" text="Excluir" />
