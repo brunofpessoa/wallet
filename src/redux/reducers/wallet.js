@@ -1,4 +1,4 @@
-import { REQUEST_FINANCIAL_DATA } from '../actions';
+import { REQUEST_CURRENCIES, SAVE_EXPENSE } from '../actions';
 
 const initialState = {
   currencies: [], // array de string
@@ -9,11 +9,16 @@ const initialState = {
 
 function walletReducer(state = initialState, action) {
   switch (action.type) {
-  case REQUEST_FINANCIAL_DATA:
+  case REQUEST_CURRENCIES:
     return {
       ...state,
       currencies: Object.keys(action.value)
         .filter((curr) => curr !== 'USDT'),
+    };
+  case SAVE_EXPENSE:
+    return {
+      ...state,
+      expenses: [...state.expenses, action.value],
     };
   default:
     return state;
