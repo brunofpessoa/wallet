@@ -16,7 +16,7 @@ class WalletForm extends Component {
   constructor() {
     super();
     this.state = {
-      value: '',
+      value: '0',
       currency: 'USD',
       method: 'Dinheiro',
       tag: 'Alimentação',
