@@ -44,8 +44,9 @@ class WalletForm extends Component {
   saveExpense = () => {
     const { value, currency, method, tag, description, exchangeRates } = this.state;
     const { expenses, addExpense } = this.props;
+    const lastPos = -1;
     const data = {
-      id: expenses.length < 1 ? 0 : expenses[expenses.length - 1].id + 1,
+      id: expenses.length < 1 ? 0 : expenses.at(lastPos).id + 1,
       value,
       currency,
       method,

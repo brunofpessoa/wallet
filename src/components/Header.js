@@ -12,7 +12,7 @@ class Header extends Component {
       const { ask } = exchangeRates[currency];
       const convertedValue = Number(value) * Number(ask);
       return acc + convertedValue;
-    }, 0)).toFixed(2);
+    }, 0));
   };
 
   render() {
@@ -23,7 +23,7 @@ class Header extends Component {
         <div>
           <p data-testid="email-field">{userEmail}</p>
           <p data-testid="total-field">
-            {this.getAverageExpenseValue(expenses)}
+            {this.getAverageExpenseValue(expenses).toFixed(2)}
           </p>
           <p data-testid="header-currency-field">BRL</p>
         </div>
