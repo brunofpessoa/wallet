@@ -1,7 +1,7 @@
 import React from 'react';
 import propTypes from 'prop-types';
 
-function Select({ name, label, options, testid, onChange }) {
+function Select({ name, label, options, testid, onChange, value }) {
   return (
     <label htmlFor={ name }>
       { label }
@@ -9,13 +9,14 @@ function Select({ name, label, options, testid, onChange }) {
         name={ name }
         data-testid={ testid }
         onChange={ onChange }
+        value={ value }
       >
-        {options.map((value, index) => (
+        {options.map((option, index) => (
           <option
             key={ index }
-            value={ value }
+            value={ option }
           >
-            {value}
+            {option}
           </option>
         ))}
       </select>
@@ -29,6 +30,7 @@ Select.propTypes = {
   label: propTypes.string,
   options: propTypes.arrayOf(propTypes.string).isRequired,
   onChange: propTypes.func.isRequired,
+  value: propTypes.string.isRequired,
 };
 
 Select.defaultProps = {

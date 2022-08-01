@@ -1,7 +1,7 @@
 import React from 'react';
 import propTypes from 'prop-types';
 
-function Input({ name, type, placeholder, testId, label, onChange }) {
+function Input({ name, type, placeholder, testId, label, onChange, value }) {
   return (
     <label htmlFor={ name }>
       { label }
@@ -11,6 +11,7 @@ function Input({ name, type, placeholder, testId, label, onChange }) {
         placeholder={ placeholder }
         data-testid={ testId }
         onChange={ onChange }
+        value={ value }
       />
     </label>
   );
@@ -23,6 +24,7 @@ Input.propTypes = {
   testId: propTypes.string,
   label: propTypes.string,
   onChange: propTypes.func,
+  value: propTypes.oneOfType([propTypes.string, propTypes.number]).isRequired,
 };
 
 Input.defaultProps = {

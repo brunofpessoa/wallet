@@ -1,4 +1,5 @@
-import { REQUEST_CURRENCIES, SAVE_EXPENSE, DELETE_EXPENSE } from '../actions';
+import { REQUEST_CURRENCIES, SAVE_EXPENSE,
+  DELETE_EXPENSE, ENABLE_EDIT, SAVE_EDITED_EXPENSE } from '../actions';
 
 const initialState = {
   currencies: [], // array de string
@@ -24,6 +25,23 @@ function walletReducer(state = initialState, action) {
     return {
       ...state,
       expenses: state.expenses.filter((exp) => exp.id !== action.value),
+    };
+  case ENABLE_EDIT:
+    return {
+      ...state,
+      editor: true,
+      idToEdit: action.value,
+    };
+  case SAVE_EDITED_EXPENSE:
+    return {
+      ...state,
+      expenses: state.expenses.map((exp) => {
+        if (exp.id === action.payload.id) {
+          return ({ ...action.payload.data });
+        }
+        return exp;
+      }),
+      editor: false,
     };
   default:
     return state;
