@@ -10,15 +10,17 @@ class Table extends Component {
       <div>
         <table>
           <thead>
-            <th>Descrição</th>
-            <th>Tag</th>
-            <th>Método de pagamento</th>
-            <th>Valor</th>
-            <th>Moeda</th>
-            <th>Câmbio utilizado</th>
-            <th>Valor convertido</th>
-            <th>Moeda de conversão</th>
-            <th>Editar/Excluir</th>
+            <tr>
+              <th>Descrição</th>
+              <th>Tag</th>
+              <th>Método de pagamento</th>
+              <th>Valor</th>
+              <th>Moeda</th>
+              <th>Câmbio utilizado</th>
+              <th>Valor convertido</th>
+              <th>Moeda de conversão</th>
+              <th>Editar/Excluir</th>
+            </tr>
           </thead>
           <tbody>
             {
@@ -38,7 +40,7 @@ class Table extends Component {
                     <td>Real</td>
                     <td>
                       <Button name="edit" text="Editar" />
-                      <Button name="delete" text="Excluir" />
+                      <Button name="delete" text="Excluir" testId="delete-btn" />
                     </td>
                   </tr>);
               })
