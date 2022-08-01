@@ -3,6 +3,7 @@ import getFinancialData from '../../services/economyAPI';
 export const LOGIN = 'LOGIN';
 export const REQUEST_CURRENCIES = 'REQUEST_CURRENCIES';
 export const SAVE_EXPENSE = 'SAVE_EXPENSE';
+export const DELETE_EXPENSE = 'DELETE_EXPENSE';
 
 export const loginAction = (value) => (
   {
@@ -12,6 +13,11 @@ export const loginAction = (value) => (
 const currenciesAction = (data) => (
   { type: REQUEST_CURRENCIES,
     value: data,
+  });
+
+export const deleteExpenseAction = (id) => (
+  { type: DELETE_EXPENSE,
+    value: id,
   });
 
 export function fetchCurrenciesData() {
