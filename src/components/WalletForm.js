@@ -120,7 +120,7 @@ class WalletForm extends Component {
           <Input
             name="value"
             type="number"
-            label="Despesa"
+            label="Valor"
             placeholder="Valor"
             testId="value-input"
             onChange={ this.handleChange }

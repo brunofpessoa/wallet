@@ -6,6 +6,7 @@ function Select({ name, label, options, testid, onChange, value }) {
     <label htmlFor={ name }>
       { label }
       <select
+        id={ name }
         name={ name }
         data-testid={ testid }
         onChange={ onChange }
