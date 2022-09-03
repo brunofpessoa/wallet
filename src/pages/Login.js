@@ -2,9 +2,9 @@ import React from 'react';
 import { connect } from 'react-redux';
 import propTypes from 'prop-types';
 
-import Input from '../components/Input';
 import Button from '../components/Button';
 import { loginAction } from '../redux/actions';
+import styles from '../styles/Login.module.css';
 
 class Login extends React.Component {
   constructor() {
@@ -45,30 +45,34 @@ class Login extends React.Component {
   render() {
     const { emailIsValid, passwordIsValid } = this.state;
     return (
-      <>
-        <Input
-          name="email"
-          type="email"
-          placeholder="henry@newman.com"
-          testId="email-input"
-          label="EMAIL ADDRESS"
-          onChange={ this.validateInputs }
-        />
-        <Input
-          name="password"
-          type="password"
-          placeholder="Your password"
-          testId="password-input"
-          label="PASSWORD"
-          onChange={ this.validateInputs }
-        />
+      <div className={ styles.main }>
+        <label htmlFor="email">
+          Email
+          <input
+            name="email"
+            type="email"
+            placeholder="henry@newman.com"
+            data-testid="email-input"
+            onChange={ this.validateInputs }
+          />
+        </label>
+        <label htmlFor="password">
+          Password
+          <input
+            name="password"
+            type="password"
+            placeholder="Your password"
+            data-testid="password-input"
+            onChange={ this.validateInputs }
+          />
+        </label>
         <Button
           name="loginBtn"
           text="Entrar"
           disabled={ !(emailIsValid && passwordIsValid) }
           onClick={ this.login }
         />
-      </>
+      </div>
     );
   }
 }

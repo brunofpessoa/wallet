@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import propTypes from 'prop-types';
 
-import Input from './Input';
 import Select from './Select';
 import Button from './Button';
 import { expenseAction, fetchCurrenciesData,
@@ -116,24 +115,30 @@ class WalletForm extends Component {
     const { value, currency, method, tag, description } = this.state;
     return (
       <div>
-        <form>
-          <Input
-            name="value"
-            type="number"
-            label="Valor"
-            placeholder="Valor"
-            testId="value-input"
-            onChange={ this.handleChange }
-            value={ value }
-          />
-          <Input
-            name="description"
-            label="Descrição"
-            placeholder="Digite aqui."
-            testId="description-input"
-            onChange={ this.handleChange }
-            value={ description }
-          />
+        <form className="flex justify-center">
+          <label htmlFor="Value">
+            Valor
+            <input
+              name="value"
+              type="number"
+              label="Valor"
+              placeholder="Valor"
+              data-testid="value-input"
+              onChange={ this.handleChange }
+              value={ value }
+            />
+          </label>
+          <label htmlFor="description">
+            Descrição
+            <input
+              name="description"
+              label="Descrição"
+              placeholder="Digite aqui."
+              data-testid="description-input"
+              onChange={ this.handleChange }
+              value={ description }
+            />
+          </label>
           <Select
             name="currency"
             testid="currency-input"

@@ -1,0 +1,19 @@
+.main {
+  align-items: center;
+  border: 3px solid var(--theme);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  left: 50%;
+  max-width: fit-content;
+  padding: var(--padding);
+  position: fixed;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.main label {
+  display: flex;
+  flex-direction: column;
+}

@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { BsTrash } from 'react-icons/bs';
+import { BiEdit } from 'react-icons/bi';
 
 import propTypes from 'prop-types';
-import Button from './Button';
 import { deleteExpenseAction, editExpenseAction } from '../redux/actions';
 
 class Table extends Component {
@@ -21,7 +22,7 @@ class Table extends Component {
   render() {
     const { expenses } = this.props;
     return (
-      <div>
+      <div className="flex justify-center">
         <table>
           <thead>
             <tr>
@@ -53,18 +54,26 @@ class Table extends Component {
                     <td>{convertedValue}</td>
                     <td>Real</td>
                     <td>
-                      <Button
+                      <button
+                        className="btn-icon"
+                        type="button"
                         name="edit"
                         text="Editar"
-                        testId="edit-btn"
+                        data-testid="edit-btn"
                         onClick={ () => this.handleEdit(exp.id) }
-                      />
-                      <Button
+                      >
+                        <BiEdit style={ { fontSize: '25px' } } />
+                      </button>
+                      <button
+                        className="btn-icon"
+                        type="button"
                         name="delete"
                         text="Excluir"
-                        testId="delete-btn"
+                        data-testid="delete-btn"
                         onClick={ () => this.deleteExpense(exp.id) }
-                      />
+                      >
+                        <BsTrash style={ { fill: '#ff0000', fontSize: '25px' } } />
+                      </button>
                     </td>
                   </tr>);
               })

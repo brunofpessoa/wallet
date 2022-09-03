@@ -1,0 +1,128 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu+Mono:wght@400;700&display=swap') ;
+
+* {
+  border: 0;
+  box-sizing: border-box;
+  color: var(--primary-color);
+  font-family: var(--main-font);
+  font-size: var(--fs-m);
+  list-style-type: none;
+  margin: 0;
+
+  /* outline: 1px solid red; */
+  padding: 0;
+  text-decoration: none;
+}
+
+h1 {
+  font-size: var(--fs-l);
+  font-weight: 700;
+}
+
+h2 , h3 {
+  font-size: var(--fs-m);
+  font-weight: 700;
+
+}
+
+input , button , label , select {
+  border-radius: 10px;
+  padding: calc(var(--padding) / 3);
+}
+
+input , button , select {
+  border: 2px solid var(--theme);
+}
+
+
+button:hover {
+  cursor: pointer;
+}
+
+td , th {
+  padding: 10px;
+  text-align: center;
+}
+
+:root {
+
+  --theme: #ff163e;
+
+  --primary-color: rgb(22, 22, 22);
+
+  --bg-color: rgb(235, 235, 235);
+
+  --bg-secondary-color: rgb(3, 39, 140);
+
+  --main-font: 'Ubuntu Mono', monospace;
+
+  --fs-s: clamp(12px, 0.2rem + 1vw, 30px);
+
+  --fs-m: clamp(16px, 0.3rem + 1vw, 40px);
+
+  --fs-l: clamp(20px, 1rem + 1vw, 60px);
+
+  --fs-xl: clamp(34px, 2rem + 1vw, 100px);
+
+  --gap: clamp(10px, 1.5vw, 40px);
+
+  --padding: clamp(20px, 1vw, 50px);
+
+  --containerWidth: clamp(340px, 90vw, 1920px);
+
+  --cardSize: clamp(150px, 10vw, 300px);
+
+  --imageWidth: clamp(150px, 10rem + 5vw, 400px);
+
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+.pad {
+  padding: var(--padding);
+}
+
+.flex {
+  display: flex;
+  flex-wrap: warp;
+}
+
+.gap {
+  gap: var(--gap);
+}
+
+.txt-gap {
+  gap: calc(var(--gap) / 5);
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.bold {
+  font-weight: 700;
+}
+
+.space-b {
+  justify-content: space-between;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.align-c {
+  align-items: center;
+}
+
+.theme-bg {
+  background-color: green;
+}
+
+.btn-icon {
+  background: none;
+  border: none;
+}
