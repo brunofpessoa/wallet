@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import propTypes from 'prop-types';
 import { BiWallet } from 'react-icons/bi';
+import { GiCash } from 'react-icons/gi';
 
 class Header extends Component {
   getAverageExpenseValue = (expenses) => {
@@ -21,20 +22,19 @@ class Header extends Component {
     return (
       <div className="flex space-b pad">
         <div className="flex gap align-c">
-          <BiWallet size={ 70 } />
-          <h1>MyWallet</h1>
+          <BiWallet size={ 70 } style={ { fill: 'gold' } } />
+          <h1 className="highlight">MyWallet</h1>
         </div>
         <div className="flex-column gap">
           <div className="flex txt-gap">
-            <p className="bold">Usuário:</p>
-            <p data-testid="email-field">{userEmail}</p>
+            <p className="highlight" data-testid="email-field">{userEmail}</p>
           </div>
           <div className="flex txt-gap bold">
-            <p>Total:</p>
-            <p data-testid="total-field">
+            <GiCash style={ { fill: 'gold' } } />
+            <p className="highlight" data-testid="total-field">
               {this.getAverageExpenseValue(expenses).toFixed(2)}
             </p>
-            <p data-testid="header-currency-field">BRL</p>
+            <p className="highlight" data-testid="header-currency-field">BRL</p>
           </div>
         </div>
       </div>

@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import propTypes from 'prop-types';
+import { MdPlaylistAddCheck } from 'react-icons/md';
+import { GrFormAdd } from 'react-icons/gr';
 
 import Select from './Select';
-import Button from './Button';
 import { expenseAction, fetchCurrenciesData,
   saveEditedExpenseAction } from '../redux/actions';
 import getFinancialData from '../services/economyAPI';
@@ -115,7 +116,7 @@ class WalletForm extends Component {
     const { value, currency, method, tag, description } = this.state;
     return (
       <div>
-        <form className="flex justify-center">
+        <form className="flex justify-center align-c gap">
           <label htmlFor="Value">
             Valor
             <input
@@ -164,15 +165,29 @@ class WalletForm extends Component {
             value={ tag }
           />
           {
-            editor ? <Button
-              name="editExpense"
-              text="Editar despesa"
-              onClick={ this.submitEditedExpense }
-            /> : <Button
-              name="addExpense"
-              text="Adicionar despesa"
-              onClick={ this.submitExpense }
-            />
+            editor
+              ? (
+                <button
+                  className="round flex align-c"
+                  type="button"
+                  name="editExpense"
+                  text="Editar despesa"
+                  onClick={ this.submitEditedExpense }
+                >
+                  <MdPlaylistAddCheck style={ { fill: 'white' } } />
+                </button>)
+              : (
+                <button
+                  className="round flex align-c"
+                  type="button"
+                  name="addExpense"
+                  text="Adicionar despesa"
+                  onClick={ this.submitExpense }
+                  style={ { backgroundColor: 'var(--theme)' } }
+
+                >
+                  <GrFormAdd style={ { fill: 'white' } } />
+                </button>)
           }
         </form>
       </div>

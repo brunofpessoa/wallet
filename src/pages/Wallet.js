@@ -7,15 +7,15 @@ class Wallet extends React.Component {
   render() {
     return (
       <div className="flex-column">
-        <div className="theme-bg">
+        <div className="theme-bg shadow">
           <div className="gap pad">
             <Header />
           </div>
         </div>
-        <div className="gap pad">
+        <div className="gap pad shadow">
           <WalletForm />
         </div>
-        <div className="gap pad">
+        <div className="gap pad shadow">
           <Table />
         </div>
       </div>

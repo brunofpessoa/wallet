@@ -2,9 +2,9 @@ import React from 'react';
 import { connect } from 'react-redux';
 import propTypes from 'prop-types';
 
-import Button from '../components/Button';
+import { BiWallet } from 'react-icons/bi';
 import { loginAction } from '../redux/actions';
-import styles from '../styles/Login.module.css';
+// import styles from '../styles/Login.module.css';
 
 class Login extends React.Component {
   constructor() {
@@ -45,34 +45,46 @@ class Login extends React.Component {
   render() {
     const { emailIsValid, passwordIsValid } = this.state;
     return (
-      <div className={ styles.main }>
-        <label htmlFor="email">
-          Email
-          <input
-            name="email"
-            type="email"
-            placeholder="henry@newman.com"
-            data-testid="email-input"
-            onChange={ this.validateInputs }
+      <form className="flex-column absolute-center shadow">
+        <div className="flex gap align-c primary pad">
+          <BiWallet
+            style={ { fill: 'gold',
+              fontSize: 'var(--fs-xl)' } }
           />
-        </label>
-        <label htmlFor="password">
-          Password
-          <input
-            name="password"
-            type="password"
-            placeholder="Your password"
-            data-testid="password-input"
-            onChange={ this.validateInputs }
-          />
-        </label>
-        <Button
-          name="loginBtn"
-          text="Entrar"
-          disabled={ !(emailIsValid && passwordIsValid) }
-          onClick={ this.login }
-        />
-      </div>
+          <h1 className="highlight">MyWallet</h1>
+        </div>
+        <div className="flex-column gap align-c pad">
+          <label className="flex-column" htmlFor="email">
+            Email
+            <input
+              name="email"
+              type="email"
+              placeholder="user@email.com"
+              data-testid="email-input"
+              onChange={ this.validateInputs }
+            />
+          </label>
+          <label className="flex-column" htmlFor="password">
+            Password
+            <input
+              name="password"
+              type="password"
+              placeholder="Your password"
+              data-testid="password-input"
+              onChange={ this.validateInputs }
+            />
+          </label>
+          <button
+            className="highlight"
+            type="submit"
+            name="loginBtn"
+            disabled={ !(emailIsValid && passwordIsValid) }
+            onClick={ this.login }
+          >
+            Entrar
+          </button>
+        </div>
+      </form>
     );
   }
 }

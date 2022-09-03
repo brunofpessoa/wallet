@@ -45,13 +45,13 @@ class Table extends Component {
                 const convertedValue = (Number(value) * Number(ask)).toFixed(2);
                 return (
                   <tr key={ exp.id }>
-                    <td>{description}</td>
-                    <td>{tag}</td>
-                    <td>{method}</td>
-                    <td>{Number(value).toFixed(2)}</td>
-                    <td>{name}</td>
-                    <td>{Number(ask).toFixed(2)}</td>
-                    <td>{convertedValue}</td>
+                    <td><p>{description}</p></td>
+                    <td><p>{tag}</p></td>
+                    <td><p>{method}</p></td>
+                    <td><p>{Number(value).toFixed(2)}</p></td>
+                    <td><p>{name}</p></td>
+                    <td><p>{Number(ask).toFixed(2)}</p></td>
+                    <td><p>{convertedValue}</p></td>
                     <td>Real</td>
                     <td>
                       <button
@@ -62,7 +62,7 @@ class Table extends Component {
                         data-testid="edit-btn"
                         onClick={ () => this.handleEdit(exp.id) }
                       >
-                        <BiEdit style={ { fontSize: '25px' } } />
+                        <BiEdit style={ { fontSize: '35px' } } />
                       </button>
                       <button
                         className="btn-icon"
@@ -72,7 +72,7 @@ class Table extends Component {
                         data-testid="delete-btn"
                         onClick={ () => this.deleteExpense(exp.id) }
                       >
-                        <BsTrash style={ { fill: '#ff0000', fontSize: '25px' } } />
+                        <BsTrash style={ { fill: '#ff0000', fontSize: '35px' } } />
                       </button>
                     </td>
                   </tr>);
