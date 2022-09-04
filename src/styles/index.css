@@ -41,10 +41,6 @@ button {
   font-weight: 700;
 }
 
-button:disabled {
-  opacity: 50%;
-}
-
 button:enabled:hover {
   cursor: pointer;
   transform: scale(1.1);
@@ -69,13 +65,13 @@ td , th {
 
   --main-font: 'Ubuntu Mono', monospace;
 
-  --fs-s: clamp(12px, 0.2rem + 1vw, 30px);
+  --fs-s: clamp(12px, calc(0.2rem + 1vw), 30px);
 
-  --fs-m: clamp(16px, 0.3rem + 1vw, 40px);
+  --fs-m: clamp(16px, calc(0.3rem + 1vw), 40px);
 
-  --fs-l: clamp(20px, 1rem + 1vw, 60px);
+  --fs-l: clamp(20px, calc(1rem + 1vw), 60px);
 
-  --fs-xl: clamp(34px, 2rem + 1vw, 100px);
+  --fs-xl: clamp(34px, calc(2rem + 1vw), 100px);
 
   --gap: clamp(10px, 1.5vw, 40px);
 

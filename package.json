@@ -1,5 +1,6 @@
 {
-  "name": "sd-0x-project-trybewallet",
+  "name": "wallet",
+  "homepage": "https://brunofpessoa.github.io/wallet",
   "version": "0.1.0",
   "private": true,
   "engines": {
@@ -22,6 +23,8 @@
     "stylelint-order": "4.1.0"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -56,6 +59,7 @@
     "eslint-plugin-react-hooks": "4.2.0",
     "eslint-plugin-react-redux": "3.3.0",
     "eslint-plugin-sonarjs": "0.14.0",
+    "gh-pages": "^4.0.0",
     "jest-localstorage-mock": "2.4.3",
     "mocha": "^10.0.0",
     "mochawesome": "^7.1.3",
