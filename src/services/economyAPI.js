@@ -6,7 +6,7 @@ const getFinancialData = async () => {
     const data = await response.json();
     return data;
   } catch (err) {
-    throw new Error(err.message);
+    console.error(err.message);
   }
 };
 

@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { BsTrash } from 'react-icons/bs';
 import { BiEdit } from 'react-icons/bi';
 
-import propTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import { deleteExpenseAction, editExpenseAction } from '../redux/actions';
 
 class Table extends Component {
@@ -20,9 +20,9 @@ class Table extends Component {
   }
 
   render() {
-    const { expenses } = this.props;
+    const { expenses, editor } = this.props;
     return (
-      <div className="flex justify-center">
+      <div className="table-container">
         <table>
           <thead>
             <tr>
@@ -61,6 +61,7 @@ class Table extends Component {
                         text="Editar"
                         data-testid="edit-btn"
                         onClick={ () => this.handleEdit(exp.id) }
+                        disabled={ editor }
                       >
                         <BiEdit style={ { fontSize: '35px' } } />
                       </button>
@@ -71,6 +72,7 @@ class Table extends Component {
                         text="Excluir"
                         data-testid="delete-btn"
                         onClick={ () => this.deleteExpense(exp.id) }
+                        disabled={ editor }
                       >
                         <BsTrash style={ { fill: '#ff0000', fontSize: '35px' } } />
                       </button>
@@ -86,13 +88,13 @@ class Table extends Component {
 }
 
 Table.propTypes = {
-  description: propTypes.string,
-  tag: propTypes.string,
-  method: propTypes.string,
-  value: propTypes.string,
-  currency: propTypes.string,
-  exchangeRates: propTypes.arrayOf(propTypes.object),
-  ask: propTypes.string,
+  description: PropTypes.string,
+  tag: PropTypes.string,
+  method: PropTypes.string,
+  value: PropTypes.string,
+  currency: PropTypes.string,
+  exchangeRates: PropTypes.arrayOf(PropTypes.object),
+  ask: PropTypes.string,
 }.isRequired;
 
 const mapStateToProps = (store) => ({

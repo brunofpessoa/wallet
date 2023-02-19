@@ -1,11 +1,12 @@
 import { REQUEST_CURRENCIES, SAVE_EXPENSE,
-  DELETE_EXPENSE, ENABLE_EDIT, SAVE_EDITED_EXPENSE } from '../actions';
+  DELETE_EXPENSE, ENABLE_EDIT, SAVE_EDITED_EXPENSE, LOGOUT } from '../actions';
+import { currencies, expenses } from './initialState';
 
 const initialState = {
-  currencies: [], // array de string
-  expenses: [], // array de objetos, com cada objeto tendo as chaves id, value, currency, method, tag, description e exchangeRates
-  editor: false, // valor booleano que indica de uma despesa está sendo editada
-  idToEdit: 0, // valor numérico que armazena o id da despesa que esta sendo editada
+  currencies,
+  expenses,
+  editor: false,
+  idToEdit: 0,
 };
 
 function walletReducer(state = initialState, action) {
@@ -42,6 +43,14 @@ function walletReducer(state = initialState, action) {
         return exp;
       }),
       editor: false,
+    };
+  case LOGOUT:
+    return {
+      ...state,
+      currencies: [],
+      expenses: [],
+      editor: false,
+      idToEdit: 0,
     };
   default:
     return state;

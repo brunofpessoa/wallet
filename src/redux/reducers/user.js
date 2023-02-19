@@ -1,13 +1,20 @@
+import { LOGIN, LOGOUT } from '../actions';
+
 const initialState = {
-  email: '',
+  email: 'fulano@email.com',
 };
 
 function loginReducer(state = initialState, action) {
   switch (action.type) {
-  case 'LOGIN':
+  case LOGIN:
     return {
       ...state,
       email: action.value,
+    };
+  case LOGOUT:
+    return {
+      ...state,
+      email: '',
     };
   default:
     return state;

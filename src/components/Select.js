@@ -1,10 +1,13 @@
 import React from 'react';
-import propTypes from 'prop-types';
+import PropTypes from 'prop-types';
 
 function Select({ name, label, options, testid, onChange, value }) {
   return (
-    <label htmlFor={ name }>
-      { label }
+    <label htmlFor={ name } className="flex-column">
+      <span>
+        { label }
+        <span className="red">*</span>
+      </span>
       <select
         id={ name }
         name={ name }
@@ -26,12 +29,12 @@ function Select({ name, label, options, testid, onChange, value }) {
 }
 
 Select.propTypes = {
-  name: propTypes.string.isRequired,
-  testid: propTypes.string,
-  label: propTypes.string,
-  options: propTypes.arrayOf(propTypes.string).isRequired,
-  onChange: propTypes.func.isRequired,
-  value: propTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  testid: PropTypes.string,
+  label: PropTypes.string,
+  options: PropTypes.arrayOf(PropTypes.string).isRequired,
+  onChange: PropTypes.func.isRequired,
+  value: PropTypes.string.isRequired,
 };
 
 Select.defaultProps = {

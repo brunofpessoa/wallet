@@ -1,10 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import propTypes from 'prop-types';
+import PropTypes from 'prop-types';
 
 import { BiWallet } from 'react-icons/bi';
 import { loginAction } from '../redux/actions';
-// import styles from '../styles/Login.module.css';
 
 class Login extends React.Component {
   constructor() {
@@ -13,6 +12,8 @@ class Login extends React.Component {
       emailIsValid: false,
       passwordIsValid: false,
       email: '',
+      emailBorderColor: '',
+      passwordBorderColor: '',
     };
   }
 
@@ -23,6 +24,17 @@ class Login extends React.Component {
     if (name === 'password') {
       this.setState({
         passwordIsValid: value.length >= passwordMinLength,
+      }, () => {
+        const { passwordIsValid } = this.state;
+        if (passwordIsValid) {
+          this.setState({
+            passwordBorderColor: 'border-theme',
+          });
+        } else {
+          this.setState({
+            passwordBorderColor: 'border-red',
+          });
+        }
       });
     }
 
@@ -31,6 +43,17 @@ class Login extends React.Component {
       this.setState({
         emailIsValid: value.match(emailRegex),
         email: value,
+      }, () => {
+        const { emailIsValid } = this.state;
+        if (emailIsValid) {
+          this.setState({
+            emailBorderColor: 'border-theme',
+          });
+        } else {
+          this.setState({
+            emailBorderColor: 'border-red',
+          });
+        }
       });
     }
   }
@@ -43,9 +66,14 @@ class Login extends React.Component {
   }
 
   render() {
-    const { emailIsValid, passwordIsValid } = this.state;
+    const {
+      emailIsValid,
+      passwordIsValid,
+      emailBorderColor,
+      passwordBorderColor,
+    } = this.state;
     return (
-      <form className="flex-column absolute-center shadow">
+      <form className="flex-column absolute-center card-shadow">
         <div className="flex gap align-c primary pad">
           <BiWallet
             style={ { fill: 'gold',
@@ -57,6 +85,7 @@ class Login extends React.Component {
           <label className="flex-column" htmlFor="email">
             Email
             <input
+              className={ emailBorderColor }
               name="email"
               type="email"
               placeholder="user@email.com"
@@ -67,6 +96,7 @@ class Login extends React.Component {
           <label className="flex-column" htmlFor="password">
             Password
             <input
+              className={ passwordBorderColor }
               name="password"
               type="password"
               placeholder="Your password"
@@ -94,8 +124,8 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 Login.propTypes = {
-  makeLogin: propTypes.func.isRequired,
-  history: propTypes.objectOf(Object).isRequired,
+  makeLogin: PropTypes.func.isRequired,
+  history: PropTypes.objectOf(Object).isRequired,
 };
 
 export default connect(null, mapDispatchToProps)(Login);

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import propTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import { MdPlaylistAddCheck } from 'react-icons/md';
 import { GrFormAdd } from 'react-icons/gr';
 
@@ -36,7 +36,14 @@ class WalletForm extends Component {
 
   handleChange = ({ target }) => {
     const { name, value } = target;
-    this.setState({ [name]: value });
+
+    if (name === 'value') {
+      if (!Number.isNaN(value) && Number(value) >= 0) {
+        this.setState({ [name]: value });
+      }
+    } else {
+      this.setState({ [name]: value });
+    }
   }
 
   submitExpense = async () => {
@@ -96,6 +103,17 @@ class WalletForm extends Component {
     }, () => { this.handleEdit(); this.cleanState(); });
   }
 
+  isButtonDisabled = () => {
+    const {
+      value,
+      currency,
+      method,
+      tag,
+    } = this.state;
+
+    return !value || !currency || !method || !tag;
+  }
+
   handleEdit = () => {
     const { value, currency, method, tag, description, exchangeRates } = this.state;
     const { idToEdit, saveEditedExpense } = this.props;
@@ -116,25 +134,29 @@ class WalletForm extends Component {
     const { value, currency, method, tag, description } = this.state;
     return (
       <div>
-        <form className="flex justify-center align-c gap">
-          <label htmlFor="Value">
-            Valor
+        <form className="flex align-c gap">
+          <label htmlFor="Value" className="flex-column">
+            <span>
+              Valor
+              <span className="red">*</span>
+            </span>
             <input
               name="value"
               type="number"
               label="Valor"
-              placeholder="Valor"
+              placeholder="Ex: 10,50"
               data-testid="value-input"
               onChange={ this.handleChange }
+              min="0"
               value={ value }
             />
           </label>
-          <label htmlFor="description">
+          <label htmlFor="description" className="flex-column">
             Descrição
             <input
               name="description"
               label="Descrição"
-              placeholder="Digite aqui."
+              placeholder="Digite aqui"
               data-testid="description-input"
               onChange={ this.handleChange }
               value={ description }
@@ -173,6 +195,7 @@ class WalletForm extends Component {
                   name="editExpense"
                   text="Editar despesa"
                   onClick={ this.submitEditedExpense }
+                  disabled={ this.isButtonDisabled() }
                 >
                   <MdPlaylistAddCheck style={ { fill: 'white' } } />
                 </button>)
@@ -183,6 +206,7 @@ class WalletForm extends Component {
                   name="addExpense"
                   text="Adicionar despesa"
                   onClick={ this.submitExpense }
+                  disabled={ this.isButtonDisabled() }
                   style={ { backgroundColor: 'var(--theme)' } }
 
                 >
@@ -196,13 +220,13 @@ class WalletForm extends Component {
 }
 
 WalletForm.propTypes = {
-  currencies: propTypes.arrayOf(propTypes.string).isRequired,
-  expenses: propTypes.arrayOf(propTypes.object).isRequired,
-  addExpense: propTypes.func.isRequired,
-  saveEditedExpense: propTypes.func.isRequired,
-  fetchCurrencies: propTypes.func.isRequired,
-  editor: propTypes.bool.isRequired,
-  idToEdit: propTypes.number.isRequired,
+  currencies: PropTypes.arrayOf(PropTypes.string).isRequired,
+  expenses: PropTypes.arrayOf(PropTypes.object).isRequired,
+  addExpense: PropTypes.func.isRequired,
+  saveEditedExpense: PropTypes.func.isRequired,
+  fetchCurrencies: PropTypes.func.isRequired,
+  editor: PropTypes.bool.isRequired,
+  idToEdit: PropTypes.number.isRequired,
 };
 
 const mapStateToProps = (store) => ({

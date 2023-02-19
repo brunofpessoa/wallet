@@ -12,10 +12,10 @@ class Wallet extends React.Component {
             <Header />
           </div>
         </div>
-        <div className="gap pad shadow">
+        <div className="gap pad shadow flex justify-center">
           <WalletForm />
         </div>
-        <div className="gap pad shadow">
+        <div className="flex justify-center gap pad shadow">
           <Table />
         </div>
       </div>

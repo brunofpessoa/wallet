@@ -6,6 +6,7 @@ export const SAVE_EXPENSE = 'SAVE_EXPENSE';
 export const DELETE_EXPENSE = 'DELETE_EXPENSE';
 export const ENABLE_EDIT = 'ENABLE_EDIT';
 export const SAVE_EDITED_EXPENSE = 'SAVE_EDITED_EXPENSE';
+export const LOGOUT = 'LOGOUT';
 
 export const loginAction = (value) => ({
   type: LOGIN, value,
@@ -42,5 +43,10 @@ export function fetchCurrenciesData() {
 }
 
 export const expenseAction = (data) => ({
-  type: SAVE_EXPENSE, value: data,
+  type: SAVE_EXPENSE,
+  value: data,
+});
+
+export const logout = () => ({
+  type: LOGOUT,
 });

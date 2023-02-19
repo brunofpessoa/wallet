@@ -1,10 +1,16 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
-import propTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import { BiWallet } from 'react-icons/bi';
 import { GiCash } from 'react-icons/gi';
+import { logout } from '../redux/actions';
 
 class Header extends Component {
+  state = {
+    redirect: false,
+  };
+
   getAverageExpenseValue = (expenses) => {
     if (expenses.length < 1) {
       return 0;
@@ -17,17 +23,43 @@ class Header extends Component {
     }, 0));
   };
 
+  handleLogout = () => {
+    const { dispatch } = this.props;
+    dispatch(logout());
+    this.setState({
+      redirect: true,
+    });
+  }
+
   render() {
+    const { redirect } = this.state;
+    if (redirect) {
+      return <Redirect to="/" />;
+    }
+
     const { userEmail, expenses } = this.props;
     return (
-      <div className="flex space-b pad">
-        <div className="flex gap align-c">
-          <BiWallet size={ 70 } style={ { fill: 'gold' } } />
-          <h1 className="highlight">MyWallet</h1>
+      <div className="">
+        <div className="flex space-b align-s">
+          <div className="flex gap align-c pad-b">
+            <BiWallet size={ 70 } style={ { fill: 'gold' } } />
+            <h1 className="highlight">MyWallet</h1>
+          </div>
+          <button
+            type="button"
+            onClick={ this.handleLogout }
+            className="btn-logout"
+          >
+            Logout
+          </button>
         </div>
         <div className="flex-column gap">
-          <div className="flex txt-gap">
-            <p className="highlight" data-testid="email-field">{userEmail}</p>
+          <div className="flex gap">
+            <p className="highlight" data-testid="email-field">
+              usuário:
+              {' '}
+              {userEmail}
+            </p>
           </div>
           <div className="flex txt-gap bold">
             <GiCash style={ { fill: 'gold' } } />
@@ -43,8 +75,9 @@ class Header extends Component {
 }
 
 Header.propTypes = {
-  userEmail: propTypes.string.isRequired,
-  expenses: propTypes.arrayOf(propTypes.object).isRequired,
+  userEmail: PropTypes.string.isRequired,
+  expenses: PropTypes.arrayOf(PropTypes.object).isRequired,
+  dispatch: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
